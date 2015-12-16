@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+# Author: Gaetano Carlucci
 
 class Trie:
 
