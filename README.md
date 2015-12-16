@@ -23,7 +23,7 @@ h2. Usage
    chmod +x trie.py
 </code></pre>
 
-Add a list of string to the trie.
+Add strings to the trie.
   
 <pre><code>
    ./trie.py 
