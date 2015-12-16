@@ -21,10 +21,5 @@ This data structure has a lot of applications: http://wikipedia.org/wiki/Trie
 
 <pre><code>
    chmod +x trie.py
-</code></pre>
-
-Add strings to the trie.
-  
-<pre><code>
    ./trie.py 
 </code></pre>
