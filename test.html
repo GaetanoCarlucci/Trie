@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>test</title>
+    <script src="./trie.js" type="text/javascript"></script>
+     <style type="text/css" media="all">
+        label {
+          width:200px;
+          line-height:200px;
+          display: inline-block;
+        }
+    </style>
+    <script type="text/javascript">
+
+    var trie, timer, oAhead, oBox,
+        lapse = 0,
+        log   = null;
+
+    function setUp() {
+        var trie = Object.create(Trie);
+        trie.add("casa")
+        trie.add("caso")
+        trie.find("caso")
+
+        out="ciao"
+        // setup the type-ahead box:
+        oAhead = document.getElementById("txtAhead");
+        oAhead.value = out
+    }
+    </script>
+</head>
+
+<body>
+    <button onclick="setUp()">Load Data</button> <input type="text" id="txtAhead" name="txtAhead" /> </input><br>
+</body>
+</html>
