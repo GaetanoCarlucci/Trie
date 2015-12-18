@@ -8,32 +8,59 @@
 
     var trie = Object.create(Trie);
 
-    function addWord() {
-        //out= "caso: " + trie.find("caso").toString() + " dado: " + trie.find("dado").toString(); 
-        oAhead = document.getElementById("txtAdd");
-        word = oAhead.value; 
-
-        //check if one word has been inserted which contains only letters
-        if (/^[a-zA-Z]+$/.test(word)) {
-            trie.add(word);
-            oAhead.value = '';
-        }
-        else
-        {
-           oAhead.value = 'Please insert one word only with letters.';
-        }
-    }
-
     function printTrie() {
         oTrie = document.getElementById("txtTrie");
         oTrie.value = trie.getTrie();
+    }
+
+    //check if one word contains only letters
+    function onlyLetters(word,lbl){
+        if (/^[a-zA-Z]+$/.test(word)) {
+            lbl.innerHTML = '';
+            return true;
+        }
+        else
+        {
+           lbl.innerHTML = 'Please insert one word with only letters.';
+           return false;
+        }
+    }
+
+    function addWord() {
+        //out= "caso: " + trie.find("caso").toString() + " dado: " + trie.find("dado").toString(); 
+        oAdd = document.getElementById("txtAdd");
+        lblAdd = document.getElementById("lblAdd");
+        word = oAdd.value; 
+        if (onlyLetters(word,lblAdd)) {
+            trie.add(word);
+            oAdd.value='';
+        }
+    }
+
+    function findWord() {
+        //out= "caso: " + trie.find("caso").toString() + " dado: " + trie.find("dado").toString(); 
+        oFind = document.getElementById("txtFind");
+        lblFind = document.getElementById("lblFind");
+        word = oFind.value; 
+
+        //check if one word has been inserted which contains only letters
+        if (onlyLetters(word,lblFind)) {
+            if (trie.find(word)) {
+              lblFind.innerHTML ='Found!'
+            } else {
+              lblFind.innerHTML ='Not Found!'
+            }
+        }
     }
     </script>
 </head>
 
 <body>
-    <button onclick="addWord()">Add Word</button> <input type="text" id="txtAdd" name="txtAdd" /> </input><br>
+    <button onclick="addWord()">Add Word</button> <input type="text" id="txtAdd" name="txtAdd" /> </input><label id="lblAdd" ></label><br>
     <br>
-    <button onclick="printTrie()">Current Trie </button> <input type="text" id="txtTrie" name="txtTrie" /> </input><br>
+    <button onclick="findWord()">Find Word </button> <input type="text" id="txtFind" name="txtFind" /> </input> <label id="lblFind" ></label><br>
+    <br>
+    <button onclick="printTrie()">Show Trie </button> <input type="text" id="txtTrie" name="txtTrie" /> </input><br>
+
 </body>
 </html>
