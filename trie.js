@@ -1,19 +1,17 @@
 var Trie = {
 
+    /**
+     * root node of the trie
+     */
     root: {},
     /**
-     * Add a word to the existing dictionary. If a trie node doesn't exist
-     * yet, it is created with that character as its stem.
-     * Since an add is already an expensive action, compared to adding nodes to
-     * native Javascript containers like Array or Object, inserting a trie
-     * node in lexical order is relatively cheap.
-     * Please refer to the test suite to compare performance in your browser(s).
-     *
-     * @param {word} word Remainder of the word that is added to the root trie
+     * Add a word to the existing trie.
+     * @param {word} word that is added to the root trie
      * @type  {void}
      */
     add: function(word) {
         node = this.root;
+        // '#' defines the end of a word
         word = word.concat('#');
         for ( var i = 0, l = word.length; i < l; i++ ) {
             Char = word[i]
@@ -24,9 +22,14 @@ var Trie = {
         }
     },
     
-  
+    /**
+     * Find a word to the existing dictionary. 
+     * @param {word} word that is added to the root trie
+     * @type  {bool}
+     */
     find: function(word) {
         node = this.root;
+        // '#' defines the end of a word
         word = word.concat('#');
         for ( var i = 0, l = word.length; i < l; i++ ) {
             Char = word[i]
@@ -36,5 +39,13 @@ var Trie = {
             node = node[Char]
         }
         return true;
-    }
+    },
+
+    /**
+     * Returns the current trie
+     * @type  {JSON}
+     */
+    getTrie: function() {
+        return JSON.stringify(this.root);
+    },
 };
