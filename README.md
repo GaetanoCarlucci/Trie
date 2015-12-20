@@ -1,6 +1,6 @@
 # Trie
 
-This is a trie for Python implemented using a dictionary.
+This is a simple implementation of a trie in Javascript.
 
 
 ## What is a trie?
@@ -19,7 +19,4 @@ This data structure has a lot of applications: http://wikipedia.org/wiki/Trie
 
 ## Usage
 
-<pre><code>
-   chmod +x trie.py
-   ./trie.py 
-</code></pre>
+Open the test.html with a browser.
