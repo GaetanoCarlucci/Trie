@@ -52,15 +52,37 @@
             }
         }
     }
+
+
+    function removeWord() {
+        //out= "caso: " + trie.find("caso").toString() + " dado: " + trie.find("dado").toString(); 
+        oRem = document.getElementById("txtRem");
+        lblRem = document.getElementById("lblRem");
+        word = oRem.value; 
+
+        //check if one word has been inserted which contains only letters
+        if (onlyLetters(word,lblRem)) {
+            if (trie.remove(word)) {
+              lblRem.innerHTML ='Removed!'
+            } else {
+              lblRem.innerHTML ='Not Found!'
+            }
+        }
+    }
     </script>
 </head>
 
 <body>
-    <button onclick="addWord()">Add Word</button> <input type="text" id="txtAdd" name="txtAdd" /> </input><label id="lblAdd" ></label><br>
+       <button onclick="addWord()">Add Word</button> <input type="text" id="txtAdd" name="txtAdd" /> </input><label id="lblAdd" ></label><br>
     <br>
-    <button onclick="findWord()">Find Word </button> <input type="text" id="txtFind" name="txtFind" /> </input> <label id="lblFind" ></label><br>
+       <button onclick="findWord()">Find Word </button> <input type="text" id="txtFind" name="txtFind" /> </input> <label id="lblFind" ></label><br>
     <br>
-    <button onclick="printTrie()">Show Trie </button> <input type="text" id="txtTrie" name="txtTrie" /> </input><br>
+       <button onclick="removeWord()">Remove Word </button> <input type="text" id="txtRem" name="txtRem" /> </input> <label id="lblRem" ></label><br>
+    <br>
+    <br>
+    <button onclick="printTrie()">Show Trie </button> <br> 
+    <textarea rows="10" cols="100" id="txtTrie" name="txtTrie">
+    </textarea>
 
 </body>
 </html>

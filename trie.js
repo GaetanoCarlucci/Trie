@@ -6,7 +6,7 @@ var Trie = {
     root: {},
     /**
      * Add a word to the existing trie.
-     * @param {word} word that is added to the root trie
+     * @param {word} word that is added to the trie
      * @type  {void}
      */
     add: function(word) {
@@ -23,8 +23,8 @@ var Trie = {
     },
     
     /**
-     * Find a word to the existing dictionary. 
-     * @param {word} word that is added to the root trie
+     * Find a word to the existing trie. 
+     * @param {word} word to find in the trie
      * @type  {bool}
      */
     find: function(word) {
@@ -39,6 +39,32 @@ var Trie = {
             node = node[Char]
         }
         return true;
+    },
+
+     /**
+     * Removes a word from the existing trie. 
+     * @param {word} word that has to be removed from the trie
+     * @type  {bool}
+     */
+    remove: function(word) {
+        // '#' defines the end of a word
+        word = word.concat('#');        
+        while (word.length() > 0)
+        {
+            node = this.root;
+            for ( var i = 0, l = word.length-1; i < l; i++ ) {
+                Char = word[i]
+                if (!( Char in node )) {
+                    return false;
+                }
+                node = node[Char]
+            }
+        if ( Object.keys(node).length == 1 )
+        {
+        //TODO Think something
+        }
+    }
+    return true;
     },
 
     /**
