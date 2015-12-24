@@ -49,10 +49,10 @@ var Trie = {
     remove: function(word) {
         // '#' defines the end of a word
         word = word.concat('#');        
-        while (word.length() > 0)
+        while (word.length > 0)
         {
             node = this.root;
-            for ( var i = 0, l = word.length-1; i < l; i++ ) {
+            for ( var i = 0, l = word.length; i < l; i++ ) {
                 Char = word[i]
                 if (!( Char in node )) {
                     return false;
@@ -61,8 +61,9 @@ var Trie = {
             }
         if ( Object.keys(node).length == 1 )
         {
-        //TODO Think something
+           node = {}
         }
+        word = word.slice(0,-1); 
     }
     return true;
     },
