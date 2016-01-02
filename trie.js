@@ -48,20 +48,24 @@ var Trie = {
      */
     remove: function(word) {
         // '#' defines the end of a word
-        word = word.concat('#');        
+        word = word.concat('#');  
         while (word.length > 0)
         {
             node = this.root;
-            for ( var i = 0, l = word.length; i < l; i++ ) {
+            for ( var i = 0, l = word.length-1; i < l; i++ ) {
                 Char = word[i]
                 if (!( Char in node )) {
                     return false;
                 }
                 node = node[Char]
             }
-        if ( Object.keys(node).length == 1 )
+        if ( Object.keys(node).length > 1 )
         {
-           node = {}
+        	console.log(JSON.stringify(node));
+        	console.log(Object.keys(node).length);
+            console.log(Char);
+            console.log(Object.keys(node));
+            delete node[Char]; 
         }
         word = word.slice(0,-1); 
     }
