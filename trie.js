@@ -3,7 +3,7 @@ var Trie = {
     /**
      * root node of the trie
      */
-    root: {},
+    root: {'number': 0},
     /**
      * Add a word to the existing trie.
      * @param {word} word that is added to the trie
@@ -20,6 +20,7 @@ var Trie = {
             }
             node = node[Char]
         }
+        this.root.number =  this.root.number + 1;
     },
     
     /**
@@ -47,29 +48,31 @@ var Trie = {
      * @type  {bool}
      */
     remove: function(word) {
+        // checks if the word exists.
+        if (!this.find(word))
+        	return false;
+        
+        if (this.root.number == 1 ) {
+        	delete this.root;
+        	this.root = {'number': 0};
+        }
+
         // '#' defines the end of a word
         word = word.concat('#');  
-        while (word.length > 0)
-        {
+        while (word.length > 0) {
+        	oldChar = word.charAt(word.length-1);
             node = this.root;
             for ( var i = 0, l = word.length-1; i < l; i++ ) {
                 Char = word[i]
-                if (!( Char in node )) {
-                    return false;
-                }
                 node = node[Char]
             }
-        if ( Object.keys(node).length > 1 )
-        {
-        	console.log(JSON.stringify(node));
-        	console.log(Object.keys(node).length);
-            console.log(Char);
-            console.log(Object.keys(node));
-            delete node[Char]; 
+            if ( Object.keys(node).length > 1 ) {
+               delete node[oldChar]; 
+               return true;
+            }
+            word = word.slice(0,-1); 
         }
-        word = word.slice(0,-1); 
-    }
-    return true;
+        return true;
     },
 
     /**
