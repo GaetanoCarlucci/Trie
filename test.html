@@ -21,13 +21,13 @@
 
     //check if one word contains only letters
     function onlyLetters(word,lbl){
-        if (/^[a-zA-Z]+$/.test(word)) {
+        if (/^[a-z]+$/.test(word)) {
             lbl.innerHTML = '';
             return true;
         }
         else
         {
-           lbl.innerHTML = 'Please insert one word with only letters.';
+           lbl.innerHTML = 'Please insert one word with only lowercase letters.';
            return false;
         }
     }
@@ -90,7 +90,7 @@
             displayContents(contents);
             var lines = contents.split(/[\r\n]+/g); // tolerate both Windows and Unix linebreaks
             for(var i = 0; i < lines.length; i++) { /* do something with lines[i] */
-                if (/^[a-zA-Z]+$/.test(lines[i])) {
+                if (/^[a-z]+$/.test(lines[i])) {
                     trie.add(lines[i]);
                 }
             }

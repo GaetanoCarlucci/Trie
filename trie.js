@@ -4,6 +4,12 @@ var Trie = {
      * root node of the trie
      */
     root: {'number': 0},
+
+    /**
+     * alphabet letters in lower case
+     */
+    char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    
     /**
      * Add a word to the existing trie.
      * @param {word} word that is added to the trie
