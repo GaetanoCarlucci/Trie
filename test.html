@@ -14,6 +14,11 @@
         oTrie.value = trie.getTrie();
     }
 
+    function clean() {
+        trie.clean();
+        printTrie();
+    }
+
     //check if one word contains only letters
     function onlyLetters(word,lbl){
         if (/^[a-zA-Z]+$/.test(word)) {
@@ -36,6 +41,7 @@
             trie.add(word);
             oAdd.value='';
         }
+        printTrie();
     }
 
 
@@ -69,6 +75,7 @@
               lblRem.innerHTML ='Not Found!'
             }
         }
+        printTrie();
     }
 
     function readFile() {
@@ -81,6 +88,13 @@
         reader.onload = function(e) {
             var contents = e.target.result;
             displayContents(contents);
+            var lines = contents.split(/[\r\n]+/g); // tolerate both Windows and Unix linebreaks
+            for(var i = 0; i < lines.length; i++) { /* do something with lines[i] */
+                if (/^[a-zA-Z]+$/.test(lines[i])) {
+                    trie.add(lines[i]);
+                }
+            }
+            printTrie();
         };
         reader.readAsText(file);
     }
@@ -96,14 +110,15 @@
 <body>
        <button onclick="addWord()">Add Word</button> <input type="text" id="txtAdd" name="txtAdd" /> </input><label id="lblAdd" ></label><br>
     <br>
-      <input type="file" id="fileInput"  onchange="readFile()" /><br>
+      Load a dictionary (one word per line): <br> <input type="file" id="fileInput"  onchange="readFile()" /><br>
     <br>
        <button onclick="findWord()">Find Word </button> <input type="text" id="txtFind" name="txtFind" /> </input> <label id="lblFind" ></label><br>
     <br>
        <button onclick="removeWord()">Remove Word </button> <input type="text" id="txtRem" name="txtRem" /> </input> <label id="lblRem" ></label><br>
     <br>
+       <button onclick="clean()">Clean Trie</button> <br>
     <br>
-    <button onclick="printTrie()">Show Trie </button> <br> 
+     <h3>Contents of the Trie:</h3>
     <textarea rows="10" cols="100" id="txtTrie" name="txtTrie"></textarea>
     
     <h3>Contents of the file:</h3>

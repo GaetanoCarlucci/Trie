@@ -76,10 +76,22 @@ var Trie = {
     },
 
     /**
+     * Resets the trie
+     */
+    clean: function() {
+        delete this.root;
+        this.root = {'number': 0}
+    },
+
+    /**
      * Returns the current trie
      * @type  {JSON}
      */
     getTrie: function() {
         return JSON.stringify(this.root);
+    },
+
+    visitTrie: function() {
+
     },
 };
