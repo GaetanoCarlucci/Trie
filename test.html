@@ -8,6 +8,7 @@
 
     var trie = Object.create(Trie);
 
+
     function printTrie() {
         oTrie = document.getElementById("txtTrie");
         oTrie.value = trie.getTrie();
@@ -37,6 +38,7 @@
         }
     }
 
+
     function findWord() {
         //out= "caso: " + trie.find("caso").toString() + " dado: " + trie.find("dado").toString(); 
         oFind = document.getElementById("txtFind");
@@ -53,7 +55,6 @@
         }
     }
 
-
     function removeWord() {
         //out= "caso: " + trie.find("caso").toString() + " dado: " + trie.find("dado").toString(); 
         oRem = document.getElementById("txtRem");
@@ -69,11 +70,33 @@
             }
         }
     }
+
+    function readFile() {
+        oFile = document.getElementById('fileInput')
+        var file = oFile.files[0];
+        if (!file) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var contents = e.target.result;
+            displayContents(contents);
+        };
+        reader.readAsText(file);
+    }
+
+    function displayContents(contents) {
+        var element = document.getElementById('file-content');
+        element.innerHTML = contents;
+    }
+
     </script>
 </head>
 
 <body>
        <button onclick="addWord()">Add Word</button> <input type="text" id="txtAdd" name="txtAdd" /> </input><label id="lblAdd" ></label><br>
+    <br>
+      <input type="file" id="fileInput"  onchange="readFile()" /><br>
     <br>
        <button onclick="findWord()">Find Word </button> <input type="text" id="txtFind" name="txtFind" /> </input> <label id="lblFind" ></label><br>
     <br>
@@ -81,8 +104,10 @@
     <br>
     <br>
     <button onclick="printTrie()">Show Trie </button> <br> 
-    <textarea rows="10" cols="100" id="txtTrie" name="txtTrie">
-    </textarea>
+    <textarea rows="10" cols="100" id="txtTrie" name="txtTrie"></textarea>
+    
+    <h3>Contents of the file:</h3>
+    <pre id="file-content"></pre>
 </body>
 
 </html>
