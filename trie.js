@@ -20,7 +20,7 @@ var Trie = {
             }
             node = node[Char]
         }
-        this.root.number =  this.root.number + 1;
+        this.root.number += 1;
     },
     
     /**
@@ -68,11 +68,11 @@ var Trie = {
             }
             if ( Object.keys(node).length > 1 ) {
                delete node[oldChar]; 
+               this.root.number -= 1;
                return true;
             }
             word = word.slice(0,-1); 
         }
-        return true;
     },
 
     /**
