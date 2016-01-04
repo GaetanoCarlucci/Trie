@@ -107,7 +107,10 @@ var Trie = {
     },
 
     /**
-     * Recursively visits the trie in alphabetic order and returns an array of strings
+     * Recursively visits the trie in alphabetic order and returns an array (list) of strings
+     * @param {node} node to visit
+     * @param {word} word in the trie
+     * @param {list} array of string in the trie
      * @type  {array}
      */
     visitTrie: function(node, word, list) {
