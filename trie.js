@@ -8,7 +8,7 @@ var Trie = {
     /**
      * alphabet letters in lower case
      */
-    char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    alphabet: 'abcdefghijklmnopqrstuvwxyz#',
     
     /**
      * Add a word to the existing trie.
@@ -70,7 +70,6 @@ var Trie = {
             node = this.root;
             for ( var i = 0, l = word.length-1; i < l; i++ ) {
                 Char = word[i]
-                node = node[Char]
             }
             if ( Object.keys(node).length > 1 ) {
                delete node[oldChar]; 
@@ -97,7 +96,26 @@ var Trie = {
         return JSON.stringify(this.root);
     },
 
-    visitTrie: function() {
+    getContent: function() {
+    	list = [];
+    	this.visitTrie(this.root, '', list);
+    	return String(list).split(",").join("<br />");
+    },
 
+    visitTrie: function(node, word, list) {
+
+    	if (Object.keys(node).length == 1) {
+    		if (Object.keys(node) == '#') {
+    			list.push(word)
+    			return;
+    		}
+    	}
+
+    	for ( var i = 0, l = this.alphabet.length; i < l; i++ ) {
+    		Char = this.alphabet[i];
+    		if ( Char in node ) {
+    			this.visitTrie(node[Char], word + Char, list);
+    		}
+    	}
     },
 };

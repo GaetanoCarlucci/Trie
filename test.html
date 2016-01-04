@@ -14,9 +14,16 @@
         oTrie.value = trie.getTrie();
     }
 
+    function displayContents(contents) {
+        var element = document.getElementById('file-content');
+        element.innerHTML = contents;
+    }
+
+
     function clean() {
         trie.clean();
         printTrie();
+        displayContents(trie.getContent());        
     }
 
     //check if one word contains only letters
@@ -42,6 +49,7 @@
             oAdd.value='';
         }
         printTrie();
+        displayContents(trie.getContent());
     }
 
 
@@ -70,12 +78,13 @@
         //check if one word has been inserted which contains only letters
         if (onlyLetters(word,lblRem)) {
             if (trie.remove(word)) {
-              lblRem.innerHTML ='Removed!'
+              lblRem.innerHTML = 'Removed!'
             } else {
-              lblRem.innerHTML ='Not Found!'
+              lblRem.innerHTML = 'Not Found!'
             }
         }
         printTrie();
+        displayContents(trie.getContent());
     }
 
     function readFile() {
@@ -87,21 +96,16 @@
         var reader = new FileReader();
         reader.onload = function(e) {
             var contents = e.target.result;
-            displayContents(contents);
             var lines = contents.split(/[\r\n]+/g); // tolerate both Windows and Unix linebreaks
-            for(var i = 0; i < lines.length; i++) { /* do something with lines[i] */
+            for (var i = 0; i < lines.length; i++) { /* do something with lines[i] */
                 if (/^[a-z]+$/.test(lines[i])) {
                     trie.add(lines[i]);
                 }
             }
             printTrie();
+            displayContents(trie.getContent());
         };
         reader.readAsText(file);
-    }
-
-    function displayContents(contents) {
-        var element = document.getElementById('file-content');
-        element.innerHTML = contents;
     }
 
     </script>
@@ -118,10 +122,10 @@
     <br>
        <button onclick="clean()">Clean Trie</button> <br>
     <br>
-     <h3>Contents of the Trie:</h3>
-    <textarea rows="10" cols="100" id="txtTrie" name="txtTrie"></textarea>
+     <h3>Effective contents of the Trie:</h3>
+    <textarea rows="10" cols="80" id="txtTrie" name="txtTrie"></textarea>
     
-    <h3>Contents of the file:</h3>
+    <h3>Contents of the Trie:</h3>
     <pre id="file-content"></pre>
 </body>
 
