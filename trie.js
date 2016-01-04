@@ -89,19 +89,27 @@ var Trie = {
     },
 
     /**
-     * Returns the current trie
+     * Returns the effective contents of the trie
      * @type  {JSON}
      */
     getTrie: function() {
         return JSON.stringify(this.root);
     },
 
+    /**
+     * Returns human readable contents of the trie
+     * @type  {String}
+     */
     getContent: function() {
     	list = [];
     	this.visitTrie(this.root, '', list);
     	return String(list).split(",").join("<br />");
     },
 
+    /**
+     * Recursively visits the trie in alphabetic order and returns an array of strings
+     * @type  {array}
+     */
     visitTrie: function(node, word, list) {
 
     	if (Object.keys(node).length == 1) {
