@@ -70,6 +70,7 @@ var Trie = {
             node = this.root;
             for ( var i = 0, l = word.length-1; i < l; i++ ) {
                 Char = word[i]
+                node = node[Char]
             }
             if ( Object.keys(node).length > 1 ) {
                delete node[oldChar]; 

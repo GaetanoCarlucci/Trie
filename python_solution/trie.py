@@ -10,7 +10,6 @@ class Trie:
 	def getRoot(self):
 		return self.root 
 
-
 	# @param {string} word
 	# @return {void}
 	# Inserts a word into the trie.
@@ -25,7 +24,6 @@ class Trie:
 				node[char] = {}
 			node = node[char]
 	
-
 	def find(self, word):
 		node = self.root
 		# '#' defines the end of the word
@@ -37,6 +35,20 @@ class Trie:
 				node = node[char]
 		return True
 		
+	def remove(self, word):
+		# check if the word exists
+		if not self.find(word):
+		   return False
+		
+		node = self.root
+
+		#goes to the end of the word and start to remove from there
+		for char in word:
+			node = node[char]
+		
+		print node.keys()
+
+		return True
 
 if __name__ == '__main__':
 	test = Trie()
@@ -44,3 +56,4 @@ if __name__ == '__main__':
 	print test.getRoot()
 	print test.find('Attempt')
 	print test.find('attempt')
+	test.remove('attempt')
