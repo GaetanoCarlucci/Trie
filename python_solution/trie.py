@@ -20,7 +20,6 @@ class Trie:
 		node = self.root
 		# '#' defines the end of the word
 		word = word + '#'
-		print word
 		for char in word:
 			#  do not insert the char if it is already in the trie
 			if char not in node:
@@ -58,21 +57,28 @@ class Trie:
 			
 			if len(node.keys()) > 1:
 				del node[keyToRemove]
+				self.root["number"] -= 1
 				return True
 			#this is the char that we will possibly remove form the trie in the next iteration
 			keyToRemove = word[-1]
 			word = word[:-1]
-		self.root["number"] -= 1
 
 
 
 if __name__ == '__main__':
 	test = Trie()
-	test.insert('ciao')
-	test.insert('cubo')
-	test.insert('dado')
+	test.insert('hello')
+	test.insert('help')
+	test.insert('byebye')
 	print test.getRoot()
-	print test.find('caso')
-	print test.find('ciao')
-	test.remove('ciao')
+	print test.find('hello')
+	print test.find('goodbye')
+	print test.getRoot()
+	test.remove('hello')
+	print test.getRoot()
+	test.remove('help')
+	print test.getRoot()
+	test.remove('goodbye')
+	print test.getRoot()
+	test.remove('byebye')
 	print test.getRoot()
