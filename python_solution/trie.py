@@ -45,8 +45,8 @@ class Trie:
 		#goes to the end of the word and start to remove from there
 		for char in word:
 			node = node[char]
-		
-		print node.keys()
+
+		if len(node.keys()) > 1:
 
 		return True
 

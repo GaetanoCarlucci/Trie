@@ -56,17 +56,17 @@ var Trie = {
     remove: function(word) {
         // checks if the word exists.
         if (!this.find(word))
-        	return false;
+            return false;
         
         if (this.root.number == 1 ) {
-        	delete this.root;
-        	this.root = {'number': 0};
+            delete this.root;
+            this.root = {'number': 0};
         }
 
         // '#' defines the end of a word
         word = word.concat('#');  
         while (word.length > 0) {
-        	oldChar = word.charAt(word.length-1);
+            oldChar = word.charAt(word.length-1);
             node = this.root;
             for ( var i = 0, l = word.length-1; i < l; i++ ) {
                 Char = word[i]
@@ -116,18 +116,18 @@ var Trie = {
      */
     visitTrie: function(node, word, list) {
 
-    	if (Object.keys(node).length == 1) {
-    		if (Object.keys(node) == '#') {
-    			list.push(word)
-    			return;
-    		}
-    	}
+        if (Object.keys(node).length == 1) {
+            if (Object.keys(node) == '#') {
+                list.push(word)
+                return;
+            }
+        }
 
     	for ( var i = 0, l = this.alphabet.length; i < l; i++ ) {
-    		Char = this.alphabet[i];
-    		if ( Char in node ) {
-    			this.visitTrie(node[Char], word + Char, list);
-    		}
-    	}
+            Char = this.alphabet[i];
+            if ( Char in node ) {
+                this.visitTrie(node[Char], word + Char, list);
+            }
+        }
     },
 };
