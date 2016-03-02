@@ -14,7 +14,7 @@ class Trie:
 	# @return {void}
 	# Inserts a word into the trie.
 	def insert(self, word):
-		if not self.find(word):
+		if self.find(word):
 		   return False
 
 		node = self.root
@@ -43,6 +43,10 @@ class Trie:
 		# check if the word exists
 		if not self.find(word):
 		   return False
+
+		if self.root["number"] == 1: 
+		   self.root = {"number": 0}
+		   return True
 		
 		# '#' defines the end of the word
 		word = word + '#'
