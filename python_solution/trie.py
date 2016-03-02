@@ -5,7 +5,7 @@
 class Trie:
 
 	def __init__(self):
-		self.root = dict()
+		self.root = {"number": 0} # number of words in the trie
 
 	def getRoot(self):
 		return self.root 
@@ -14,6 +14,9 @@ class Trie:
 	# @return {void}
 	# Inserts a word into the trie.
 	def insert(self, word):
+		if not self.find(word):
+		   return False
+
 		node = self.root
 		# '#' defines the end of the word
 		word = word + '#'
@@ -23,6 +26,7 @@ class Trie:
 			if char not in node:
 				node[char] = {}
 			node = node[char]
+		self.root["number"] += 1
 	
 	def find(self, word):
 		node = self.root
@@ -40,20 +44,31 @@ class Trie:
 		if not self.find(word):
 		   return False
 		
-		node = self.root
+		# '#' defines the end of the word
+		word = word + '#'
+		while len(word) > 0 :
+			node = self.root
+			#goes to the end of the word in the trie
+			for char in word:
+				node = node[char]	
+			
+			if len(node.keys()) > 1:
+				del node[keyToRemove]
+				return True
+			#this is the char that we will possibly remove form the trie in the next iteration
+			keyToRemove = word[-1]
+			word = word[:-1]
+		self.root["number"] -= 1
 
-		#goes to the end of the word and start to remove from there
-		for char in word:
-			node = node[char]
 
-		if len(node.keys()) > 1:
-
-		return True
 
 if __name__ == '__main__':
 	test = Trie()
-	test.insert('attempt')
+	test.insert('ciao')
+	test.insert('cubo')
+	test.insert('dado')
 	print test.getRoot()
-	print test.find('Attempt')
-	print test.find('attempt')
-	test.remove('attempt')
+	print test.find('caso')
+	print test.find('ciao')
+	test.remove('ciao')
+	print test.getRoot()

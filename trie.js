@@ -16,6 +16,10 @@ var Trie = {
      * @type  {void}
      */
     add: function(word) {
+        // checks if the word exists.
+        if (this.find(word))
+            return false;
+        
         node = this.root;
         // '#' defines the end of a word
         word = word.concat('#');
