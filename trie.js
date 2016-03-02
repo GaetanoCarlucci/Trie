@@ -61,11 +61,6 @@ var Trie = {
         // checks if the word exists.
         if (!this.find(word))
             return false;
-        
-        if (this.root.number == 1 ) {
-            delete this.root;
-            this.root = {'number': 0};
-        }
 
         // '#' defines the end of a word
         word = word.concat('#');  

@@ -42,28 +42,23 @@ class Trie:
 		# check if the word exists
 		if not self.find(word):
 		   return False
-
-		if self.root["number"] == 1: 
-		   self.root = {"number": 0}
-		   return True
 		
 		# '#' defines the end of the word
 		word = word + '#'
 		while len(word) > 0 :
 			node = self.root
+			#this is the key that we will possibly remove 
+			keyToRemove = word[-1]
+         		
 			#goes to the end of the word in the trie
-			for char in word:
+			for char in word[:-1]:
 				node = node[char]	
-			
+
 			if len(node.keys()) > 1:
 				del node[keyToRemove]
 				self.root["number"] -= 1
 				return True
-			#this is the char that we will possibly remove form the trie in the next iteration
-			keyToRemove = word[-1]
 			word = word[:-1]
-
-
 
 if __name__ == '__main__':
 	test = Trie()
